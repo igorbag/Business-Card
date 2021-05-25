@@ -3,7 +3,6 @@ package br.com.dio.businesscard.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import br.com.dio.businesscard.App
 import br.com.dio.businesscard.data.BusinessCard
 import br.com.dio.businesscard.databinding.ActivityMainBinding
