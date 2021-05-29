@@ -2,24 +2,23 @@ package br.com.dio.businesscard.ui
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import br.com.dio.businesscard.App
-import br.com.dio.businesscard.data.BusinessCard
 import br.com.dio.businesscard.databinding.ActivityMainBinding
-import androidx.activity.viewModels
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModelFactory((application as App).repository)
     }
-
+    private val adapter by lazy { BusinessCardAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.rvCards.adapter = adapter
         insertListeners()
         getAllBusinessCard()
     }
@@ -33,11 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAllBusinessCard() {
         mainViewModel.getAll().observe(this, { businessCards ->
-            setUpAdapter(businessCards)
+            adapter.submitList(businessCards)
         })
-    }
-
-    private fun setUpAdapter(businessCards: List<BusinessCard>) {
-
     }
 }
