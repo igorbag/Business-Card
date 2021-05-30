@@ -24,9 +24,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@id/fab"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:itemCount="8"
+
         tools:listitem="@layout/item_business_card" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

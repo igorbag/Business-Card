@@ -1,5 +1,6 @@
 package br.com.dio.businesscard.ui
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.dio.businesscard.data.BusinessCard
 import br.com.dio.businesscard.databinding.ItemBusinessCardBinding
 
-class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHolder>(DiffCallback()) {
+class BusinessCardAdapter :
+    ListAdapter<BusinessCard, BusinessCardAdapter.ViewHolder>(DiffCallback()) {
+
+    var listenerShare: (BusinessCard) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -30,6 +34,10 @@ class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHo
             binding.tvTelefone.text = item.telefone
             binding.tvEmail.text = item.email
             binding.tvNomeEmpresa.text = item.empresa
+            binding.cdContent.setCardBackgroundColor(Color.parseColor(item.fundoPersonalizado))
+            binding.cdContent.setOnClickListener {
+                listenerShare(item)
+            }
         }
     }
 
@@ -37,5 +45,6 @@ class BusinessCardAdapter : ListAdapter<BusinessCard, BusinessCardAdapter.ViewHo
 
 class DiffCallback : DiffUtil.ItemCallback<BusinessCard>() {
     override fun areItemsTheSame(oldItem: BusinessCard, newItem: BusinessCard) = oldItem == newItem
-    override fun areContentsTheSame(oldItem: BusinessCard, newItem: BusinessCard) = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: BusinessCard, newItem: BusinessCard) =
+        oldItem.id == newItem.id
 }
