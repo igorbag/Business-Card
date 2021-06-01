@@ -2,6 +2,7 @@ package br.com.dio.businesscard.ui
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,7 +13,7 @@ import br.com.dio.businesscard.databinding.ItemBusinessCardBinding
 class BusinessCardAdapter :
     ListAdapter<BusinessCard, BusinessCardAdapter.ViewHolder>(DiffCallback()) {
 
-    var listenerShare: (BusinessCard) -> Unit = {}
+    var listenerShare: (View) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -36,7 +37,7 @@ class BusinessCardAdapter :
             binding.tvNomeEmpresa.text = item.empresa
             binding.cdContent.setCardBackgroundColor(Color.parseColor(item.fundoPersonalizado))
             binding.cdContent.setOnClickListener {
-                listenerShare(item)
+                listenerShare(it)
             }
         }
     }

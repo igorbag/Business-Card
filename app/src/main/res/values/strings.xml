@@ -9,4 +9,5 @@
     <string name="label_cor">Cor</string>
     <string name="label_confirmar">Confirmar</string>
     <string name="label_show_success">Registro inserido com sucesso.</string>
+    <string name="label_share_to">Compartilhar</string>
 </resources>
