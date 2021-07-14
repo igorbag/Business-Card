@@ -38,6 +38,6 @@
         android:contentDescription="@string/label_description_new_card"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add" />
+        android:src="@drawable/ic_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
